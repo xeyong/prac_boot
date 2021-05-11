@@ -1,5 +1,6 @@
 package com.prac.springboot.web;
 
+import com.prac.springboot.config.auth.LoginUser;
 import com.prac.springboot.config.auth.dto.SessionUser;
 import com.prac.springboot.service.posts.PostsService;
 import com.prac.springboot.web.dto.PostsResponseDto;
@@ -19,11 +20,11 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")//src/main/resources/templates로 오는거고
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         //return "index";//index.mustache가 붙음
         model.addAttribute("posts", postsService.findAllDesc());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        /* SessionUser user = (SessionUser) httpSession.getAttribute("user"); 반복되는값 처리*/
 
         if(user != null){
             model.addAttribute("userName", user.getName());
