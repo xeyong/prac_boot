@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController//JSon을 반환하는 컨트롤러
 public class HelloController {
-    @GetMapping("/hello")//get요청을 받을수있는
+    @GetMapping("/hello")//get요청을 받을수있는annotation
     public String hello(){
         return "hello";
     }
